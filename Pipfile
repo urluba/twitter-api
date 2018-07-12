@@ -13,6 +13,7 @@ flask-script = "*"
 python-dotenv = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 astroid = "*"
