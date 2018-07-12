@@ -1,5 +1,5 @@
 from app import ma
-from app.models import Tweet
+from app.models.tweet import Tweet
 
 class TweetSchema(ma.Schema):
     class Meta:
