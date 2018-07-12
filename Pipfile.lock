@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "40902837a33f75d7a82eda94fce86cf899b89a720000d64436a8e4ff0a5f239d"
+            "sha256": "a850efd0cf9cfec7c3f809a3fc062c47d8b9f824c04fb6069a03c146d2dfc295"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -36,6 +36,14 @@
             ],
             "index": "pypi",
             "version": "==1.0.2"
+        },
+        "flask-marshmallow": {
+            "hashes": [
+                "sha256:75c9d80f22af982b1e8ccec109d3b75c14bb5570602ae3705a4ff775badd2816",
+                "sha256:db7aff4130eb99fd05ab78fd2e2c58843ba0f208899aeb1c14aff9cd98ae8c80"
+            ],
+            "index": "pypi",
+            "version": "==0.9.0"
         },
         "flask-migrate": {
             "hashes": [
@@ -93,6 +101,21 @@
             ],
             "version": "==1.0"
         },
+        "marshmallow": {
+            "hashes": [
+                "sha256:29fe07df512746856459addf8531f7902b5e28bead17afc21204590953963906",
+                "sha256:dee61f63579ab69b9bed628709c4e33ad8da80aea2f40c7a64584537aade47ed"
+            ],
+            "version": "==3.0.0b12"
+        },
+        "marshmallow-sqlalchemy": {
+            "hashes": [
+                "sha256:32ff19350a8892b3e8dc954eeeac796576bb89356512f9e1ccd33da63f856930",
+                "sha256:755b16b64c0273fd8083dbe1e938dff0d49359c76d6238898c9082e3fc55368d"
+            ],
+            "index": "pypi",
+            "version": "==0.14.0"
+        },
         "psycopg2": {
             "hashes": [
                 "sha256:0f4c784e1b5a320efb434c66a50b8dd7e30a7dc047e8f45c0a8d2694bfe72781",
@@ -132,6 +155,14 @@
                 "sha256:e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8"
             ],
             "version": "==2.7.3"
+        },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:4965ed170bf51c347a89820e8050655e9c25db3837db6602e906b6d850fad85c",
+                "sha256:509736185257111613009974e666568a1b031b028b61b500ef1ab4ee780089d5"
+            ],
+            "index": "pypi",
+            "version": "==0.8.2"
         },
         "python-editor": {
             "hashes": [

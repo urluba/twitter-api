@@ -10,6 +10,9 @@ gunicorn = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-script = "*"
+python-dotenv = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
 
 [dev-packages]
 astroid = "*"
