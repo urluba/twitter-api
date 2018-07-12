@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 flask = "*"
+"psycopg2" = "*"
+gunicorn = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-script = "*"
 
 [dev-packages]
 astroid = "*"
@@ -13,7 +18,7 @@ nose = "*"
 flask-testing = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
 
 [pipenv]
 allow_prereleases = true
