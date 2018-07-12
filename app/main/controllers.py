@@ -1,10 +1,16 @@
 # app/main/controllers.py
-from flask import Blueprint, jsonify, request
-from app.models import Tweet
+from flask import Blueprint, jsonify, request, abort
+from sqlalchemy import exc
+from app.models import Tweet, User
 from app.schemas import tweets_schema, tweet_schema
+from app.schemas import users_schema, users_schema
 from app import db
 
-main = Blueprint('main', __name__)
+main = Blueprint(
+    'main',
+    __name__,
+    url_prefix='/api/v1/',
+    )
 
 @main.errorhandler(404)
 def page_not_found(e):
@@ -15,12 +21,16 @@ def page_not_found(e):
     }
     return jsonify(response), 404
 
-@main.route('/')
-def home():
-    return "Hello from a Blueprint!"
+@main.errorhandler(500)
+def error_5xx(e):
+    response = {
+        'url': request.url,
+        'status': 500,
+        'message': f'{e}'
+    }
+    return jsonify(response), 404
 
 @main.route('/tweets', methods=['GET'])
-@main.route('/tweets/', methods=['GET'])
 def get_tweets():
     tweets = db.session.query(Tweet).all() # SQLAlchemy request => 'SELECT * FROM tweets'
     return tweets_schema.jsonify(tweets)
@@ -32,7 +42,6 @@ def get_tweet(tweet_id: int):
     )
 
 @main.route('/tweets', methods=['POST'])
-@main.route('/tweets/', methods=['POST'])
 def create_tweet():
     requested_object = request.get_json()
     tweet = Tweet()
@@ -68,5 +77,40 @@ def update_tweet(tweet_id: int):
         pass
 
     db.session.commit()
+
+    return '', 204
+
+@main.route('/users', methods=['GET'])
+def get_users():
+    users = db.session.query(User).all() # SQLAlchemy request => 'SELECT * FROM tweets'
+    return users_schema.jsonify(users)
+
+@main.route('/users', methods=['POST'])
+def create_user():
+    requested_object = request.get_json()
+    user = User()
+    try:
+        for attr in ['username']:
+            setattr(user, attr, requested_object[attr])
+    except KeyError:
+        return '', 400
+
+    db.session.add(user)
+    try:
+        db.session.commit()
+    except exc.SQLAlchemyError as exception:
+        abort(500, exception)
+
+    return '', 204
+
+@main.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id: int):
+    user = db.session.query(User).get_or_404(user_id)
+
+    db.session.delete(user) # SQLAlchemy request => 'SELECT * FROM products'
+    try:
+        db.session.commit()
+    except exc.SQLAlchemyError as exception:
+        abort(500, exception)
 
     return '', 204

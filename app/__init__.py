@@ -25,4 +25,3 @@ def create_app() -> Flask:
     ma.init_app(app)
 
     return app
-    
