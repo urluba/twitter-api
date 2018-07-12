@@ -1,12 +1,20 @@
 
 from datetime import datetime
+from app import db
 
-class Tweet:
-    id = None
+class Tweet(db.Model):
+    __tablename__ = "tweets"
 
-    def __init__(self, text: str):
-        self.text = text
-        self.created_at = datetime.now()
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+    text = db.Column(db.Text())
+    created_at = db.Column(
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow
+    )
 
     def __str__(self):
-        return self.text
+        return '<id {}>'.format(self.id)
