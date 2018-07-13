@@ -5,6 +5,7 @@ from app.models import Tweet, User
 from app.schemas import tweets_schema, tweet_schema
 from app.schemas import users_schema, users_schema
 from app import db
+from .authent import require_appkey
 
 main = Blueprint(
     'main',
@@ -42,9 +43,14 @@ def get_tweet(tweet_id: int):
     )
 
 @main.route('/tweets', methods=['POST'])
-def create_tweet():
+@require_appkey
+def create_tweet(user=None):
+    if not user:
+        abort(401)
+
     requested_object = request.get_json()
     tweet = Tweet()
+    tweet.user_id = user.id
     try:
         for attr in ['text']:
             setattr(tweet, attr, requested_object[attr])

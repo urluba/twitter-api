@@ -25,4 +25,7 @@ class User(db.Model):
     )
 
     def __str__(self):
-        return '<id {}>'.format(self.id)
+        return '<id {id} ({name})>'.format(
+            id=self.id,
+            name=self.username
+        )
