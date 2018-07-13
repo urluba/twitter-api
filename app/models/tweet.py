@@ -15,6 +15,9 @@ class Tweet(db.Model):
         nullable=False,
         default=datetime.utcnow
     )
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User", uselist=False)
+
 
     def __str__(self):
         return '<id {}>'.format(self.id)

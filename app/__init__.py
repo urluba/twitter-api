@@ -2,7 +2,8 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow 
+from flask_marshmallow import Marshmallow
+from flask_admin import Admin
 
 try:
     from dotenv import load_dotenv
@@ -12,6 +13,8 @@ except:
 
 db = SQLAlchemy()
 ma = Marshmallow()
+admin = Admin(name='admin', template_mode='bootstrap3')
+
 
 def create_app() -> Flask:
     ''' Return a Flask application '''
@@ -23,5 +26,6 @@ def create_app() -> Flask:
 
     db.init_app(app)
     ma.init_app(app)
+    admin.init_app(app)
 
     return app

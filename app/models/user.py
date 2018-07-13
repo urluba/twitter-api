@@ -2,6 +2,7 @@
 from datetime import datetime
 from app import db
 from uuid import uuid4
+from sqlalchemy.dialects.postgresql import UUID
 
 class User(db.Model):
     __tablename__ = "users"
@@ -17,9 +18,10 @@ class User(db.Model):
     )
 
     api_token = db.Column(
-        db.Text(),
+        UUID(as_uuid=True),
+        nullable=False,
         unique=True,
-        default=uuid4()
+        default=uuid4
     )
 
     def __str__(self):
